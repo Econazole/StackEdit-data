@@ -15,6 +15,8 @@ http://sswiki.sigmastar.com.tw:8090/pages/viewpage.action?pageId=37958095
 
 ![输入图片说明](/imgs/2024-04-18/72KV0PIYBZsgMIES.png)
 
+![输入图片说明](/imgs/2024-04-21/iCZ94qgrA2RTURoG.png)
+
 ![输入图片说明](/imgs/2024-04-19/LXzSB0ZQChMDYNvx.png)
 
 -   workspace：工作区，在当前目录下`git init`，生成了`.git`文件夹，当前目录除此文件夹外的区域就是工作区
@@ -25,6 +27,8 @@ http://sswiki.sigmastar.com.tw:8090/pages/viewpage.action?pageId=37958095
 ### git基本操作
 [runoob git基本操作](https://www.runoob.com/git/git-basic-operations.html)
 
+- `git init`：只用于在一个**空目录**中创建新仓库，如果你想要 clone 一个已存在的远程仓库到本地，请使用 [git clone](https://www.runoob.com/git/git-clone.html) 命令；执行后默认情况下 Git 就会为你创建 **master** 分支。
+
 - **git status** 命令可以查看在你上次提交之后是否有对文件进行再次修改（包括新增/修改..）
 git status -s
 
@@ -34,7 +38,7 @@ git status -s
 
 - `git diff` 命令比较文件的不同，即**比较文件在暂存区和工作区的差异**。`git status` 显示你上次提交更新后的更改或者写入缓存的改动， 而 `git diff` 一行一行地显示这些改动具体是啥。
 
-- `git commit -m [message即备注信息]` 命令将暂存区内容添加到本地仓库中。本质是记录快照
+- `git commit -m [message即备注信息]` 命令将暂存区内容添加到本地仓库中。本质是记录快照。备注信息可以写“add/removed file1 file2”这种
 
 - `git reset` 命令用于回退版本，可以指定退回某一次提交的版本/快照。
 	- 语法格式：`git reset [--soft | --mixed | --hard] [HEAD]`
@@ -52,11 +56,29 @@ git status -s
 		$ git reset –hard bae128  # 回退到某个版本回退点之前的所有信息。 
 		$ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
 		```
-	- `git reset HEAD [file]` 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。可以理解成撤销某个文件的`git add`操作
+	- `git reset HEAD [file]` 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。可以理解成撤销某个文件的`git add`的添加缓存的操作
 
-节点是commit，树干是branch，主干是master
+- `git blame <file>`：以**列表形式**查看指定文件的历史修改记录。
+
+- `git log [选项] [分支名/提交哈希]`：显示从最新提交到最早提交的所有提交信息，包括提交的哈希值、作者、提交日期和提交消息等。
+	- `--oneline`：以简洁的一行格式显示提交信息
+	- `--graph`：以图形化方式显示分支和合并历史
+
+- `git remote add <remote_name> <remote_url>`：`<remote_name>`是要添加的远程仓库的名称。通常，远程仓库的名称为 `origin`，但你也可以自定义一个名称。添加远程仓库后，才可以使用其他 Git 命令与远程仓库进行交互，例如`git push` 推送本地代码到远程仓库、`git pull` 拉取远程仓库的代码等。
+
+### Git 分支管理
+
+![输入图片说明](/imgs/2024-04-21/zGsp6604jQ6idDPl.png)
+
+一个分支代表一条独立的开发线，使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。
+
+节点是commit，分支/树干是branch，主干是master。
+**Git 分支实际上是指向更改快照的指针。**
+当你切换分支的时候，Git 会用**该分支的最后提交的快照**替换你的**工作目录的内容**
 
 ![输入图片说明](/imgs/2024-04-18/lW7B6W1RrD8kMer4.png)
+
+分支合并冲突
 
 ## Repo
 官方的定义：Repo是谷歌用Python脚本写的调用git的一个脚本，可以实现管理多个git库。
@@ -112,5 +134,5 @@ sync-j="4" />
 [csdn Repo manifests默认default.xml清单文件中的各个标签详解](https://blog.csdn.net/ezconn/article/details/132473051)
 搞清楚两个点：从哪下，下到哪
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTU2OTY0NTc3XX0=
+eyJoaXN0b3J5IjpbMjU2NjcwNTFdfQ==
 -->
